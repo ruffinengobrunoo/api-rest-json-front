@@ -1,0 +1,9 @@
+{
+    "productos":
+[{
+    "img": "./fotos/img1.jpeg",
+    "titulo": "libro",
+    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    "precio": 1500
+}]
+}
