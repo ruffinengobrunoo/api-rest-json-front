@@ -1,6 +1,6 @@
 // Event listener para el botón "Añadir Producto"
 document.getElementById('añadir').addEventListener('click', function () {
-    const formulario = document.getElementById('prodNuevo');
+    const formulario = document.getElementById('nuevoProd');
     formulario.classList.toggle('new');
   });
   
@@ -10,7 +10,7 @@ document.getElementById('añadir').addEventListener('click', function () {
   
   const mostrarProductos = (datos) => {
     let productos = ''
-    const contenedor = document.querySelector('#contProducAdmin')
+    const contenedor = document.querySelector('#contenedorAdmin')
     datos.forEach(datos => {
       productos +=
         `<div class="card border border-1 border-dark d-flex flex-column align-items-center"
@@ -50,7 +50,7 @@ document.getElementById('añadir').addEventListener('click', function () {
     });
   }
   
-  const formulario = document.forms['form-crear']
+  const formulario = document.forms['formCrear']
   console.log(formulario)
   formulario.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -63,6 +63,6 @@ document.getElementById('añadir').addEventListener('click', function () {
     // Objetos con los datos obtenidos en el formulario
     let newDatos = {titulo: titulo, desc: desc, precio: precio}
     
-    let nuevosDatos = JSON.stringify(newDatos)
-    console.log(nuevosDatos)
+    let nuevosDatosJson = JSON.stringify(newDatos)
+    console.log(nuevosDatosJson)
   })

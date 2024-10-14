@@ -1,9 +1,1 @@
-{
-    "productos":
-[{
-    "img": "./fotos/img1.jpeg",
-    "titulo": "libro",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    "precio": 1500
-}]
-}
+{"productos":[{"id":1,"img":"./fotos/img1.jpeg","titulo":"libro","desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit.","precio":1500},{"id":2,"img":"./fotos/img2.jpeg", "titulo":"aaa","desc":"lisjsijdsoij","precio":123},{"id":3,"img":"./fotos/img2.jpeg","titulo":"libro 2","desc":"lisjsijdsoij","precio":1500},{"id":4,"img":"./fotos/img3.jpeg","titulo":"libro 3","desc":"lisjsijdsoij","precio":500},{"id":5,"img":"./fotos/img3.jpeg","titulo":"libro 5","desc":"lisjsijdsoij","precio":928}]}

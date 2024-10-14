@@ -25,6 +25,9 @@ const navbar = `
               <li class="nav-item">
                 <a class="nav-link" href="../contacto.html">Contacto</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../admin.html">Agregar producto</a>
+              </li>
 
             </ul>
 
