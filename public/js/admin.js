@@ -1,10 +1,12 @@
+const endpoint = 'http://localhost:3000/productos'
+
 // Event listener para el botón "Añadir Producto"
 document.getElementById('añadir').addEventListener('click', function () {
     const formulario = document.getElementById('nuevoProd');
     formulario.classList.toggle('new');
   });
   
-  fetch('http://localhost:3000/productos')
+  fetch(endpoint)
     .then(respuesta => respuesta.json())
     .then(datos => mostrarProductos(datos))
   
@@ -54,15 +56,40 @@ document.getElementById('añadir').addEventListener('click', function () {
   console.log(formulario)
   formulario.addEventListener('submit', (event) => {
     event.preventDefault();
-  
+  console.log('holis')
     let titulo = formulario.titulo.value
     let desc = formulario.desc.value
     let precio = formulario.precio.value
-    // console.log(titulo,descripcion,precio);
+    console.log(titulo,desc,precio);
   
     // Objetos con los datos obtenidos en el formulario
     let newDatos = {titulo: titulo, desc: desc, precio: precio}
     
+    if (!newDatos.titulo || !newDatos.desc || !newDatos.precio){
+      document.querySelector('#mesaje33').innerHTML='faltan datos'
+      return 
+    }
+      document.querySelector('#mensaje33').innerHTML= '';
+    
     let nuevosDatosJson = JSON.stringify(newDatos)
     console.log(nuevosDatosJson)
+
+    // enviar datos al back :3
+    const enviarNewProducto = async()=>{
+      try{
+        const enviarDatos = await fetch(endpoint, {
+          method: 'post',
+          headers: {
+            'content-type': 'aplication/json'
+          },
+          body: nuevosDatosJson
+        })
+        // obtener respuesta del back si se puede
+        const respuesta = await enviarDatos.json()
+        console.log(respuesta)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    enviarNewProducto();
   })

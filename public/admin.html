@@ -14,33 +14,24 @@
     <!-- header -->
         <div id="divNav"></div>
 
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-12 text-center">
-                <h1>Productos</h1>
-            </div>
-            <div class="col-auto">
-                <button class="btn btn-outline-success mb-3" id="añadir">Añadir Producto</button>
-            </div>
-        </div>
-
-        <!-- añadir producto -->
-        <div id="nuevoProd" class="new">
+    <!-- añadir producto -->
+       <div id="nuevoProd" class="new">
             <div class="d-flex justify-content-center align-items-center ">
                 <div class="card border border-1 border-dark" style="width: 100%; max-width: 300px;">
                     <h5 class="card-title text-center mt-3">Nuevo producto</h5>
+                    <p id="mensaje33"></p>
                     <div class="card-body">
                         <form id="formCrear">
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Titulo" name="titulo" required>
+                                <input type="text" class="form-control" placeholder="Titulo" name="titulo" >
                             </div>
                             <div class="mb-3">
                                 <input type="text" class="form-control" placeholder="Descripcion" name="desc">
                             </div>
                             <div class="mb-3">
-                                <input type="number" class="form-control" placeholder="Precio" name="precio" required>
+                                <input type="number" class="form-control" placeholder="Precio" name="precio" >
                             </div>
-                            <button type="submit" class="btn btn-success w-100">Añadir Producto</button>
+                            <button type="submit" class="btn btn-success w-100" ID="añadir">Añadir Producto</button>
                         </form>
                     </div>
                 </div>
@@ -73,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> //
 
             <div class="row">
                 <div class=" col-lg-12 d-flex flex-wrap flex-row justify-content-center " id="divProd"></div>
