@@ -13,7 +13,7 @@ const mostrarProductos = (datos) => {
             <img src="${datos.img}" class="card-img-top" alt="...">
             <div class="card-body ">
                 <h4>${datos.titulo}</h4>
-                <p class="card-text ">${datos.desc}</p>
+                <p class="card-text ">${datos.descripcion}</p>
 
             </div>
                 <p class="card-text border border-secondary rounded p-2"><strong>${datos.precio}</strong></p>
