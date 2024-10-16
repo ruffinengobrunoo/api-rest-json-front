@@ -12,7 +12,6 @@ app.use(express.static('./public')) //Ejecuta directamente el front al correr el
 app.use(cors())
 
 //Función para leer los datos del archivo .json
-
 const leerDatos = () => {
     try {   //intenta convertir cadena, si no funciona nos muestra por consol el error (catch)
         const datos = fs.readFileSync('./data/datos.json')
@@ -23,6 +22,7 @@ const leerDatos = () => {
         console.log(error)
     }
 }
+
 //leerDatos()
 const escribirDatos = (datos) => {
     try {
@@ -43,6 +43,7 @@ app.get('/productos', (req, res) => {
 })
 
 app.get('/productos/:id', (req, res) => {
+
     //res.send('Buscar producto por ID')
     const datos = leerDatos();
     const prodEncontrado= datos.productos.find ((p) => p.id == req.params.id)
@@ -57,8 +58,10 @@ app.get('/productos/:id', (req, res) => {
 
 app.post('/productos', (req, res) => {
     //res.send('Guardando nuevo producto')
+    console.log(req.body)
     const datos= leerDatos();
     nuevoProducto = { id: datos.productos.length + 1, ...req.body }     //Genera un ID y agrega una copia de req.body
+    datos.productos.push(nuevoProducto)
     datos.productos.push(nuevoProducto)
     escribirDatos(datos);
     res.json({"mensaje":'Nuevo producto agregado',
