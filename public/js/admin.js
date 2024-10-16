@@ -1,4 +1,4 @@
-const endpoint = 'http://localhost:3000/productos';
+const endpoint = 'http://localhost:3000/productos'
 
 // Event listener para el botón "Añadir Producto"
 document.getElementById('añadir').addEventListener('click', function () {
@@ -6,7 +6,7 @@ document.getElementById('añadir').addEventListener('click', function () {
   formulario.classList.toggle('new');
 });
 
-fetch('http://localhost:3000/productos')
+fetch(endpoint)
   .then(respuesta => respuesta.json())
   .then(datos => mostrarProductos(datos))
 
@@ -17,7 +17,7 @@ const mostrarProductos = (datos) => {
     productos +=
       `<div class="card border border-1 border-dark d-flex flex-column align-items-center"
             style="width: 100%; max-width: 300px; margin:30px">
-            <img src="${datos.img}" class="card-img-top" alt="...">
+            <img src="fotos/${datos.img}" class="card-img-top" alt="...">
             <div class="card-body ">
                 <h4>${datos.titulo}</h4>
                 <p class="card-text ">${datos.descripcion}</p>
@@ -30,8 +30,9 @@ const mostrarProductos = (datos) => {
     <a href="#prodEditar" class="btn btn-outline-warning me-2 edit">
       <i class="bi bi-pencil"></i>
     </a>
-    <a class="btn btn-outline-danger" type="submit">
-      <i class="bi bi-trash"></i>
+    
+    <a class="btn btn-outline-danger" type="submit" id="eliminar" onClick="eliminar(${datos.id})">
+      <i class="bi bi-trash" id="eliminar"></i>
     </a>
   </div>
 </div>
@@ -51,28 +52,32 @@ const mostrarProductos = (datos) => {
   });
 }
 
+mostrarMensaje = (mensaje) =>{
+  document.querySelector('#divMensaje').innerHTML= mensaje;
+}
+
+// agregar producto
 const formulario = document.forms['formAñadir']
 console.log(formulario)
 formulario.addEventListener('submit', (event) => {
   event.preventDefault();
-  console.log("holaaaa")
   let titulo = formulario.titulo.value
   let descripcion = formulario.descripcion.value
   let precio = formulario.precio.value
-  console.log(titulo, descripcion, precio);
+  let img = formulario.titulo.value+".jpeg";
+  // console.log(titulo,descripcion,precio);
 
   // Objetos con los datos obtenidos en el formulario
-  let newDatos = { titulo: titulo, descripcion: descripcion, precio: precio }
+  let newDatos = { titulo: titulo, descripcion: descripcion, precio: precio, img: img}
 
 
   if (!newDatos.titulo || !newDatos.descripcion || !newDatos.precio) {
     document.querySelector('#mensaje').innerHTML = '*Complete todos los datos'
     return
   }
-  else {
     document.querySelector('#mensaje').innerHTML = ''
-    // return
-  }
+
+ 
 
   let nuevosDatosJson = JSON.stringify(newDatos)
   console.log(nuevosDatosJson)
@@ -85,9 +90,25 @@ formulario.addEventListener('submit', (event) => {
         },
         body: nuevosDatosJson
       })
+      
       //obtengo la respuesta del back
       const respuesta = await enviarDatos.json()
       console.log(respuesta)
+      let mensaje = document.querySelector('#divMensaje');
+      mensaje.className+= 'bg-warning';
+      mensaje.innerHTML = respuesta.mensaje;
+
+      //limpiar formulario y ocultarlo
+      // document.querySelector('#formAñadir').reset();
+      document.querySelector('#formAñadir').style.display='none';
+
+      mostrarMensaje(respuesta.mensaje)
+
+      //refrescar la pagina
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+
     }
     catch (error) {
       console.log(error)
@@ -95,3 +116,23 @@ formulario.addEventListener('submit', (event) => {
   }
   enviarNewProducto()
 })
+
+// eliminar producto por atrevido gato..
+
+const eliminar = (id) =>{
+  // console.log(id+" sos capo")
+
+  const eliminarProd = async() =>{
+    try{
+      const res = await fetch (endpoint+ '/' + id, { // endpoint con param
+        method: 'delete'
+      })
+      //obtengo respuesta
+      const respuesta = await res.json
+      mostrarMensaje(respuesta.mensaje)
+    }catch{
+      mostrarMensaje('error al borrar sos re gil')
+    }
+  }
+  eliminarProd();
+}
